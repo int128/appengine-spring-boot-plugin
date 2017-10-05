@@ -1,2 +1,3 @@
-# appengine-spring-boot-plugin
-Gradle plugin for App Engine Standard and Spring Boot
+# App Engine Spring Boot Plugin
+
+This is a Gradle plugin for App Engine Standard and Spring Boot.
