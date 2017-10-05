@@ -23,15 +23,15 @@ group = 'com.example'
 version = System.getenv('TRAVIS_TAG') ?: 'SNAPSHOT'
 
 pluginBundle {
-    website = 'https://github.com/int128/gradle-plugin-starter'
-    vcsUrl = 'https://github.com/int128/gradle-plugin-starter'
-    description = 'Hello World Plugin'
-    tags = ['example']
+    website = 'https://github.com/int128/appengine-spring-boot-plugin'
+    vcsUrl = 'https://github.com/int128/appengine-spring-boot-plugin'
+    description = 'App Engine Spring Boot Plugin'
+    tags = ['spring-boot', 'appengine', 'cloud']
 
     plugins {
-        helloPlugin {
-            id = 'com.example.hello'
-            displayName = 'Hello World Plugin'
+        appengineSpringBootPlugin {
+            id = 'org.hidetake.appengine.spring.boot'
+            displayName = 'App Engine Spring Boot Plugin'
         }
     }
 }
