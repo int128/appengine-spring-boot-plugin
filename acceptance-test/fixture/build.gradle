@@ -1,7 +1,3 @@
 plugins {
-    id 'com.example.hello'
-}
-
-task test << {
-    assert project.plugins.hasPlugin('com.example.hello')
+    id 'org.hidetake.appengine.spring.boot'
 }
