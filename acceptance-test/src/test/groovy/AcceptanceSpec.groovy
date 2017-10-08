@@ -9,8 +9,25 @@ class AcceptanceSpec extends Specification {
         given:
         def runner = GradleRunner.create()
             .withProjectDir(new File('fixture'))
-            .withArguments('tasks')
+            .withArguments('-s', 'tasks')
             .withPluginClasspath()
+            .forwardOutput()
+
+        when:
+        runner.build()
+
+        then:
+        noExceptionThrown()
+    }
+
+    @Unroll
+    def 'project should be built'() {
+        given:
+        def runner = GradleRunner.create()
+                .withProjectDir(new File('fixture'))
+                .withArguments('-s', 'build')
+                .withPluginClasspath()
+                .forwardOutput()
 
         when:
         runner.build()

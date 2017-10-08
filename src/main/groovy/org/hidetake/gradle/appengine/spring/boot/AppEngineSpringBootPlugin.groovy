@@ -13,6 +13,9 @@ class AppEngineSpringBootPlugin implements Plugin<Project> {
 
   @Override
   void apply(Project project) {
+    project.apply plugin: 'war'
+    project.apply plugin: 'com.google.cloud.tools.appengine-standard'
+
     extension = project.extensions.create('appengineSpringBoot', AppEngineSpringBootExtension)
     extension.devLoggingPropertiesTask = project.tasks.create('devLoggingProperties', DevLoggingPropertiesTask)
     extension.watchAndSyncWebAppTask = project.tasks.create('watchAndSyncWebApp', WatchAndSyncWebAppTask)
