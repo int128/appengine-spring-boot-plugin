@@ -24,6 +24,7 @@ jobs:
 
       - run:
           name: Collect
+          when: always
           command: |
             cp -av */build/test-results/test/*.xml build/test-results/test
       - store_test_results:
@@ -32,6 +33,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle/caches
+            - ~/.gradle/wrapper
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       - deploy:
