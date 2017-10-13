@@ -1,4 +1,4 @@
-# App Engine Spring Boot Plugin [![Build Status](https://travis-ci.org/int128/appengine-spring-boot-plugin.svg?branch=master)](https://travis-ci.org/int128/appengine-spring-boot-plugin) [![Gradle Status](https://gradleupdate.appspot.com/int128/appengine-spring-boot-plugin/status.svg)](https://gradleupdate.appspot.com/int128/appengine-spring-boot-plugin/status)
+# App Engine Spring Boot Plugin [![CircleCI](https://circleci.com/gh/int128/appengine-spring-boot-plugin.svg?style=shield)](https://circleci.com/gh/int128/appengine-spring-boot-plugin) [![Gradle Status](https://gradleupdate.appspot.com/int128/appengine-spring-boot-plugin/status.svg)](https://gradleupdate.appspot.com/int128/appengine-spring-boot-plugin/status)
 
 This is a Gradle plugin for App Engine Standard and Spring Boot.
 
@@ -90,14 +90,19 @@ Feel free to open issues or pull requests.
 
 ### Build
 
+Google Cloud SDK is required.
+
 ```
+brew cask install google-cloud-sdk
+gcloud components install app-engine-java
+
 ./gradlew build
 ```
 
 
 ### Deployment
 
-Travis CI builds the plugin continuously.
+CircleCI builds the plugin continuously.
 It also publishes the plugin if a tag is pushed and following variables are set.
 
 Environment Variable        | Value
