@@ -14,4 +14,18 @@ repositories {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'com.google.appengine:appengine-api-1.0-sdk:+'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+configurations.all {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    exclude group: 'org.slf4j', module: 'jul-to-slf4j'
+}
+
+appengine {
+    run {
+        // for the acceptance test
+        startSuccessTimeout = 30
+    }
 }

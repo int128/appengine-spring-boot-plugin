@@ -5,6 +5,8 @@ This is a Gradle plugin for App Engine Standard and Spring Boot.
 
 ## Getting Started
 
+See [the example project of App Engine Spring Boot Java](acceptance-test/appengine-spring-boot-java).
+
 ```groovy
 plugins {
   id 'java'
@@ -52,7 +54,7 @@ The plugin continuously watch and sync following contents while App Engine Dev S
 Content | Source | Destination
 --------|--------|------------
 e.g. Thymeleaf templates    | `src/main/resources` | `build/exploded-*/WEB-INF/classes`
-e.g. static files           | `src/main/webapps`   | `build/exploded-*`
+e.g. static files           | `src/main/webapp`    | `build/exploded-*`
 
 
 ### Spring Boot configuration for debug
