@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: google/cloud-sdk:alpine
-    working_directory: ~/gradleupdate
+    working_directory: ~/appengine-spring-boot-plugin
     steps:
       - run:
           name: Install
@@ -21,6 +21,13 @@ jobs:
           name: Build
           command: |
             ./gradlew build
+
+      - run:
+          name: Collect
+          command: |
+            cp -av */build/test-results/test/*.xml build/test-results/test
+      - store_test_results:
+          path: build/test-results/test
 
       - save_cache:
           paths:
