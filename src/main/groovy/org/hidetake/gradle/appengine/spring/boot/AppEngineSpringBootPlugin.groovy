@@ -9,48 +9,48 @@ import org.gradle.api.Project
  * @author Hidetake Iwata
  */
 class AppEngineSpringBootPlugin implements Plugin<Project> {
-  private AppEngineSpringBootExtension extension
+    private AppEngineSpringBootExtension extension
 
-  @Override
-  void apply(Project project) {
-    project.apply plugin: 'war'
-    project.apply plugin: 'com.google.cloud.tools.appengine-standard'
+    @Override
+    void apply(Project project) {
+        project.apply plugin: 'war'
+        project.apply plugin: 'com.google.cloud.tools.appengine-standard'
 
-    extension = project.extensions.create('appengineSpringBoot', AppEngineSpringBootExtension)
-    extension.devLoggingPropertiesTask = project.tasks.create('devLoggingProperties', DevLoggingPropertiesTask)
-    extension.watchAndSyncWebAppTask = project.tasks.create('watchAndSyncWebApp', WatchAndSyncWebAppTask)
-    extension.stageApplicationPropertiesTask = project.tasks.create('stageApplicationProperties', StageApplicationPropertiesTask)
-    extension.initialize(project)
+        extension = project.extensions.create('appengineSpringBoot', AppEngineSpringBootExtension)
+        extension.devLoggingPropertiesTask = project.tasks.create('devLoggingProperties', DevLoggingPropertiesTask)
+        extension.watchAndSyncWebAppTask = project.tasks.create('watchAndSyncWebApp', WatchAndSyncWebAppTask)
+        extension.stageApplicationPropertiesTask = project.tasks.create('stageApplicationProperties', StageApplicationPropertiesTask)
+        extension.initialize(project)
 
-    project.afterEvaluate {
-      configureAppEnginePlugin(project)
-      configureSpringBootPlugin(project)
+        project.afterEvaluate {
+            configureAppEnginePlugin(project)
+            configureSpringBootPlugin(project)
+        }
     }
-  }
 
-  /**
-   * Configure the App Engine plugin.
-   */
-  void configureAppEnginePlugin(Project project) {
-    final appengine = project.findProperty('appengine')
-    assert appengine, 'appengine-gradle-plugin must be applied'
+    /**
+     * Configure the App Engine plugin.
+     */
+    void configureAppEnginePlugin(Project project) {
+        final appengine = project.findProperty('appengine')
+        assert appengine, 'appengine-gradle-plugin must be applied'
 
-    if (appengine.run.jvmFlags == null) {
-      appengine.run.jvmFlags = []
+        if (appengine.run.jvmFlags == null) {
+            appengine.run.jvmFlags = []
+        }
+        appengine.run.jvmFlags.addAll(extension.computeDevServerJvmFlags())
+
+        project.tasks.appengineRun.dependsOn(extension.devLoggingPropertiesTask)
+        project.tasks.appengineRun.dependsOn(extension.watchAndSyncWebAppTask)
+        project.tasks.appengineStage.finalizedBy(extension.stageApplicationPropertiesTask)
     }
-    appengine.run.jvmFlags.addAll(extension.computeDevServerJvmFlags())
 
-    project.tasks.appengineRun.dependsOn(extension.devLoggingPropertiesTask)
-    project.tasks.appengineRun.dependsOn(extension.watchAndSyncWebAppTask)
-    project.tasks.appengineStage.finalizedBy(extension.stageApplicationPropertiesTask)
-  }
-
-  /**
-   * Configure the Spring Boot plugin.
-   */
-  static void configureSpringBootPlugin(Project project) {
-    // Spring Boot 1.x only
-    project.tasks.findByPath('bootRepackage')?.enabled = false
-    project.tasks.findByPath('findMainClass')?.enabled = false
-  }
+    /**
+     * Configure the Spring Boot plugin.
+     */
+    static void configureSpringBootPlugin(Project project) {
+        // Spring Boot 1.x only
+        project.tasks.findByPath('bootRepackage')?.enabled = false
+        project.tasks.findByPath('findMainClass')?.enabled = false
+    }
 }

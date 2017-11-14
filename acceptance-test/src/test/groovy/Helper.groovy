@@ -10,9 +10,9 @@ class Helper {
 
     static GradleRunner createGradleRunner(String projectName, String... commandLine) {
         GradleRunner.create()
-                .withProjectDir(new File(projectName))
-                .withArguments('-s', *commandLine)
-                .withPluginClasspath()
-                .forwardOutput()
+            .withProjectDir(new File(projectName))
+            .withArguments('-s', *commandLine)
+            .withPluginClasspath()
+            .forwardOutput()
     }
 }

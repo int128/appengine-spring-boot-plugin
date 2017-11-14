@@ -1,18 +1,18 @@
 buildscript {
-    repositories {
-        jcenter()
-        // TODO: remove when 2.0.0 is released
-        maven { url 'https://repo.spring.io/libs-milestone' }
-    }
-    dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.M6'
-    }
+  repositories {
+    jcenter()
+    // TODO: remove when 2.0.0 is released
+    maven { url 'https://repo.spring.io/libs-milestone' }
+  }
+  dependencies {
+    classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.M6'
+  }
 }
 
 plugins {
-    id 'java'
-    //id 'org.springframework.boot' version '2.0.0.RELEASE'
-    id 'org.hidetake.appengine.spring.boot'
+  id 'java'
+  //id 'org.springframework.boot' version '2.0.0.RELEASE'
+  id 'org.hidetake.appengine.spring.boot'
 }
 
 apply plugin: 'org.springframework.boot'
@@ -22,26 +22,26 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
-    jcenter()
-    // TODO: remove when 2.0.0 is released
-    maven { url 'https://repo.spring.io/libs-milestone' }
+  jcenter()
+  // TODO: remove when 2.0.0 is released
+  maven { url 'https://repo.spring.io/libs-milestone' }
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    compile 'com.google.appengine:appengine-api-1.0-sdk:+'
-    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+  compile 'org.springframework.boot:spring-boot-starter-web'
+  compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+  compile 'com.google.appengine:appengine-api-1.0-sdk:+'
+  providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 }
 
 configurations.all {
-    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
-    exclude group: 'org.slf4j', module: 'jul-to-slf4j'
+  exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+  exclude group: 'org.slf4j', module: 'jul-to-slf4j'
 }
 
 appengine {
-    run {
-        // for the acceptance test
-        startSuccessTimeout = 30
-    }
+  run {
+    // for the acceptance test
+    startSuccessTimeout = 30
+  }
 }
