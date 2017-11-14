@@ -11,7 +11,7 @@ See [the example project of App Engine Spring Boot Java](acceptance-test/appengi
 plugins {
   id 'java'
   id 'org.springframework.boot' version '1.5.6.RELEASE'
-  id 'org.hidetake.appengine.spring.boot' version '1.0'
+  id 'org.hidetake.appengine.spring.boot' version '1.1'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
