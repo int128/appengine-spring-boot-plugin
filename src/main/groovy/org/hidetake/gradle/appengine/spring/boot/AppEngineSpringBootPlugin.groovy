@@ -49,7 +49,8 @@ class AppEngineSpringBootPlugin implements Plugin<Project> {
    * Configure the Spring Boot plugin.
    */
   static void configureSpringBootPlugin(Project project) {
-    project.tasks.bootRepackage.enabled = false
-    project.tasks.findMainClass.enabled = false
+    // Spring Boot 1.x only
+    project.tasks.findByPath('bootRepackage')?.enabled = false
+    project.tasks.findByPath('findMainClass')?.enabled = false
   }
 }
